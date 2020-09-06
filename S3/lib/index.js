@@ -25,6 +25,13 @@ class ApplicationInterface
 
     getCounter()
     {
+        // Hack in TODAY:
+        //this.cache['days'] = 0;
+        //this.cache['weeks'] = 0;
+
+        // Hack in THE PAST:
+        //this.cache['days'] = -1;
+
         return this.cache;
     }
 
