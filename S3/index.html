@@ -72,7 +72,27 @@
 
     <div id="arduino">
         <details>
-            <summary>Arduino</summary>
+            <summary>Arduino / ESP8266</summary>
+            <p>
+                I like doing IoT with the <a href="https://www.adafruit.com/product/2821">Adafruit Huzzah</a>, which is
+                an ESP8266 (the little brother of the ESP32, having only WiFi, no Bluetooth). It has micro USB and a
+                LiPo charger circuit. It's a little more expensive than a no-name ESP32, but I got hooked on these a
+                while back and always keep a few spares for random projects. At some point I ended up with an
+                <a href="https://www.adafruit.com/product/2900">OLED 128x32 “FeatherWing”</a> that fits directly on
+                the Huzzah. I think maybe that was through an old <a href="https://www.adafruit.com/adabox">AdaBox</a>?
+            </p>
+            <p>
+                At any rate, it's a decent little setup to show an example of how to use the election countdown
+                timer on my desk.
+            </p>
+            <p style="text-align:center;">
+                <img src="img/arduino_election_countdown.gif" width="450" height="198" />
+            </p>
+            <p>
+                Feel free to use and adapt it to your own boards and displays. Note that the code, as written,
+                doesn't do much to conserve power. It keeps the wifi constantly up. If your application will be
+                battery-operated, you may want to take that into consideration.
+            </p>
             <div class="detailFooter"></div>
         </details>
     </div>
