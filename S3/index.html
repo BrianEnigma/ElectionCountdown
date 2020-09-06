@@ -38,6 +38,7 @@
     <p>
         Countdown to the US Elections: 3 November, 2020.
     </p>
+    <p>TODO: Pretty up these fields...</p>
     <div id="counterDays">
         &nbsp;
     </div>
@@ -55,77 +56,113 @@
         <h1>Resources</h1>
         <p>TODO: flesh this out</p>
         <ul>
-            <li>Register to Vote</li>
-            <li>Vote by mail</li>
-            <li>USPS delays</li>
+            <li><a href="https://www.usa.gov/register-to-vote">Register to Vote</a></li>
+            <li><a href="https://www.usa.gov/election-office">State-by-State Voter Registration Deadlines</a></li>
+            <li><a href="https://www.usa.gov/absentee-voting">Absentee and Early Voting</a></li>
+            <li><a href="https://about.usps.com/what/government-services/election-mail/welcome.htm">USPS delays</a>
+                <ul>
+                    <li>Be aware that not all jurisdictions include postage. You may need to provide your own postage stamp.</li>
+                    <li>The USPS suggests delays up to 15 days. Return your ballot <i>early</i>.</li>
+                </ul>
+            </li>
+            <li><a href="https://www.vote.org/covid-19/">Voting &amp; COVID-19</a>: state by state information and requirements</li>
         </ul>
     </div>
 
     <div id="arduino">
         <details>
             <summary>Arduino</summary>
+            <div class="detailFooter"></div>
         </details>
     </div>
 
     <div id="api">
         <details>
-        <summary>API</summary>
-        <p>
-            I've made an API available at <code>https://api.electioncountdown.org/ElectionCountdown</code>.
-        </p>
+            <summary>API</summary>
+            <p>
+                I've made an API available at <code>https://api.electioncountdown.org/ElectionCountdown</code>.
+            </p>
 
-        <h2>API Parameters</h2>
-        <ul>
-            <li>
-                <code>https://api.electioncountdown.org/ElectionCountdown?brief=0</code> (default) will return all fields.
-            </li>
-            <li>
-                <code>https://api.electioncountdown.org/ElectionCountdown?brief=1</code> will return only the <code>days</code>
-                and <code>weeks</code> fields. This is useful for parsing in small memory footprint devices, such as an
-                Arduino.
-            </li>
-        </ul>
+            <h2>API Parameters</h2>
+            <ul>
+                <li>
+                    <code>https://api.electioncountdown.org/ElectionCountdown?brief=0</code> (default) will return all fields.
+                </li>
+                <li>
+                    <code>https://api.electioncountdown.org/ElectionCountdown?brief=1</code> will return only the <code>days</code>
+                    and <code>weeks</code> fields. This is useful for parsing in small memory footprint devices, such as an
+                    Arduino.
+                </li>
+            </ul>
 
-        <h2>API Results</h2>
-        <p>The following fields are returned, or a subset, depending on the <code>brief</code> parameter:</p>
-        <ul>
-            <li><code>now</code> : The current date.</li>
-            <li><code>target</code> : Target date, 2020-11-03.</li>
-            <li><code>tzinfo</code> : The calculation is for the <code>US/Pacific</code> timezone.</li>
-            <li><code>days</code> : Number of days until election, or <code>-1</code> if it was in the past.</li>
-            <li><code>weeks</code> : Number of weeks until election, rounded to one decimal place.</li>
-        </ul>
+            <h2>API Results</h2>
+            <p>The following fields are returned, or a subset, depending on the <code>brief</code> parameter:</p>
+            <ul>
+                <li><code>now</code> : The current date.</li>
+                <li><code>target</code> : Target date, 2020-11-03.</li>
+                <li><code>tzinfo</code> : The calculation is for the <code>US/Pacific</code> timezone.</li>
+                <li><code>days</code> : Number of days until election, or <code>-1</code> if it was in the past.</li>
+                <li><code>weeks</code> : Number of weeks until election, rounded to one decimal place.</li>
+            </ul>
 
-        <h2>API Limits</h2>
-        <p>
-            Beyond CORS headers, I have not yet put many restrictions around the API. I'd like to provide the API until
-            election day to help raise awareness. But since the results do not change often, I would like to request you
-            limit your calls to once every 60 minutes.
-        </p>
+            <h2>API Limits</h2>
+            <p>
+                Beyond CORS headers, I have not yet put many restrictions around the API. I'd like to provide the API until
+                election day to help raise awareness. But since the results do not change often, I would like to request you
+                limit your calls to once every 60 minutes.
+            </p>
 
-        <h2>CORS Restrictions</h2>
-        <p>
-            If a HTTP referrer was passed in, the CORS restrictions are limited to this website. If no referrer was passed
-            in &emdash; such as when using <code>curl</code> or connecting from an embedded device &emdash; then
-            <code>*</code> is returned.
-        </p>
-        <p>
-            If you are working on a project that requires a custom CORS header, please contact me and we can discuss adding
-            a new exception.
-        </p>
+            <h2>CORS Restrictions</h2>
+            <p>
+                If a HTTP referrer was passed in, the CORS restrictions are limited to this website. If no referrer was passed
+                in &mdash; such as when using <code>curl</code> or connecting from an embedded device &mdash; then
+                <code>*</code> is returned.
+            </p>
+            <p>
+                If you are working on a project that requires a custom CORS header, please contact me and we can discuss adding
+                a new exception.
+            </p>
+            <div class="detailFooter"></div>
         </details>
     </div>
 
     <div id="infrastructure">
         <details>
             <summary>Infrastructure</summary>
+            <p>
+                This code consists of two parts: a front end and a back end.
+            </p>
+            <p>
+                The back end is a simple REST API that returns a countdown, in terms of days and weeks. It takes care of
+                timezones and time math, giving you a snapshot answer for “now.” While this could have been done
+                entirely in JavaScript on the front end, the intention here is to provide a simple API for Internet
+                of Things (IoT) devices to query. Not all IoT devices have accurate clocks and date math on small
+                form-factor devices adds complexity.
+            </p>
+            <p>
+                The back end is a simple <a href="https://aws.amazon.com/lambda/">AWS Lambda</a>a> function, written
+                in Python. It is fronted by an <a href="https://aws.amazon.com/api-gateway/">AWS API Gateway</a>
+                instance running through a custom domain name.
+            </p>
+            <p>
+                The front end is a simple static website that uses JavaScript to hit the back end API and retrieve
+                the number of days and weeks. It is served from an <a href="https://aws.amazon.com/s3/">AWS S3</a>
+                bucket, routed through <a href="https://aws.amazon.com/cloudfront/">AWS Cloudfront</a> for caching
+                and SSL certificates.
+            </p>
+            <div class="detailFooter"></div>
         </details>
-
     </div>
 
     <div id="source">
         <details>
-            <summary>Source</summary>
+            <summary>Source / License</summary>
+            <p>
+                The source code can be found at
+                <a href="https://github.com/BrianEnigma/ElectionCountdown">https://github.com/BrianEnigma/ElectionCountdown</a>.
+                It is licensed under the the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+            </p>
+            <div class="detailFooter"></div>
         </details>
     </div>
 
