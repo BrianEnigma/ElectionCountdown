@@ -1,0 +1,75 @@
+body {
+    font-family: serif;
+    font-size: 14pt;
+}
+
+#loadingImg {
+    margin: 5px 0 0 0;
+    width: 50px;
+    height: 50px;
+}
+#loadingDiv {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.25);
+    text-align:center;
+    padding: 0;
+    border-radius: 10px;
+}
+
+h1, summary {
+    font-family: sans-serif;
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+h1 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+#resources {
+    background-color:#eeeeee;
+    border-radius: 10px;
+    padding:0.25em 1em;
+    margin-top:1em;
+}
+
+#arduino {
+    background-color:#ddffdd;
+    border-radius: 10px;
+    padding:0 1em;
+}
+
+#api {
+    background-color:#ddffff;
+    border-radius: 10px;
+    padding:0 1em;
+}
+
+#infrastructure {
+    background-color:#ffddff;
+    border-radius: 10px;
+    padding:0 1em;
+}
+
+#source {
+    background-color:#ffffbb;
+    border-radius: 10px;
+    padding:0 1em;
+}
+
+code {
+    color:#00CC00;
+    background-color:#000000;
+    padding-left:0.25em;
+    padding-right:0.25em;
+}

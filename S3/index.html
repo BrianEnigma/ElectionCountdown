@@ -1,0 +1,134 @@
+<!doctype HTML>
+<html>
+<head>
+    <title>US Election 2020 Countdown</title>
+    <link rel="stylesheet" type="text/css" href="lib/index.css">
+    <script type="text/javascript" src="lib/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="lib/index.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="description" content="Countdown to the US 2020 Election.">
+    <meta name="keywords" content="Election, Elections, US, USPol, Countdown">
+
+    <link rel="icon" type="image/png" href="icons/favicon-32.png">
+    <link rel="apple-touch-icon" href="icons/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="icons/favicon-128.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/favicon-152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="icons/favicon-167.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/favicon-180.png">
+    <link rel="apple-touch-icon" sizes="256x256" href="icons/favicon-256.png">
+
+    <!-- b00kface open graph tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://electioncountdown.org"/>
+    <meta property="og:title" content="US Election 2020 Countdown"/>
+    <meta property="og:description" content="Countdown to the US 2020 Election."/>
+    <meta property="og:site_name" content="US Election 2020 Countdown"/>
+    <meta property="og:image" content="https://electioncountdown.org/preview.jpg"/>
+    <!-- birdsite tags -->
+    <meta name="twitter:creator" content="@brianenigma" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" value="electioncountdown.org" />
+    <meta name="twitter:title" value="US Election 2020 Countdown" />
+    <meta name="twitter:description" value="Up-to-the-second calculations of the Portland fence fines." />
+    <meta name="twitter:image" content="https://electioncountdown.org/preview.jpg" />
+    <meta name="twitter:url" value="https://electioncountdown.org" />
+</head>
+<body>
+    <p>
+        Countdown to the US Elections: 3 November, 2020.
+    </p>
+    <div id="counterDays">
+        &nbsp;
+    </div>
+    <div id="counterWeeks">
+        &nbsp;
+    </div>
+    <div id="counterMessage">
+        &nbsp;
+    </div>
+    <div id="loadingDiv">
+        <img src="img/loading.gif" id="loadingImg" />
+    </div>
+
+    <div id="resources">
+        <h1>Resources</h1>
+        <p>TODO: flesh this out</p>
+        <ul>
+            <li>Register to Vote</li>
+            <li>Vote by mail</li>
+            <li>USPS delays</li>
+        </ul>
+    </div>
+
+    <div id="arduino">
+        <details>
+            <summary>Arduino</summary>
+        </details>
+    </div>
+
+    <div id="api">
+        <details>
+        <summary>API</summary>
+        <p>
+            I've made an API available at <code>https://api.electioncountdown.org/ElectionCountdown</code>.
+        </p>
+
+        <h2>API Parameters</h2>
+        <ul>
+            <li>
+                <code>https://api.electioncountdown.org/ElectionCountdown?brief=0</code> (default) will return all fields.
+            </li>
+            <li>
+                <code>https://api.electioncountdown.org/ElectionCountdown?brief=1</code> will return only the <code>days</code>
+                and <code>weeks</code> fields. This is useful for parsing in small memory footprint devices, such as an
+                Arduino.
+            </li>
+        </ul>
+
+        <h2>API Results</h2>
+        <p>The following fields are returned, or a subset, depending on the <code>brief</code> parameter:</p>
+        <ul>
+            <li><code>now</code> : The current date.</li>
+            <li><code>target</code> : Target date, 2020-11-03.</li>
+            <li><code>tzinfo</code> : The calculation is for the <code>US/Pacific</code> timezone.</li>
+            <li><code>days</code> : Number of days until election, or <code>-1</code> if it was in the past.</li>
+            <li><code>weeks</code> : Number of weeks until election, rounded to one decimal place.</li>
+        </ul>
+
+        <h2>API Limits</h2>
+        <p>
+            Beyond CORS headers, I have not yet put many restrictions around the API. I'd like to provide the API until
+            election day to help raise awareness. But since the results do not change often, I would like to request you
+            limit your calls to once every 60 minutes.
+        </p>
+
+        <h2>CORS Restrictions</h2>
+        <p>
+            If a HTTP referrer was passed in, the CORS restrictions are limited to this website. If no referrer was passed
+            in &emdash; such as when using <code>curl</code> or connecting from an embedded device &emdash; then
+            <code>*</code> is returned.
+        </p>
+        <p>
+            If you are working on a project that requires a custom CORS header, please contact me and we can discuss adding
+            a new exception.
+        </p>
+        </details>
+    </div>
+
+    <div id="infrastructure">
+        <details>
+            <summary>Infrastructure</summary>
+        </details>
+
+    </div>
+
+    <div id="source">
+        <details>
+            <summary>Source</summary>
+        </details>
+    </div>
+
+
+</body>
+</html>
