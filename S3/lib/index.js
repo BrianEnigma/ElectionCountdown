@@ -93,7 +93,7 @@ function displayResult()
     if (counter['days'] !== undefined)
     {
         let days = Number(counter['days'])
-        let weeks = Number(counter['weeks'])
+        let weeks = Number(counter['weeks']).toFixed(1);
         if (days < 0) {
             $('#counterMessage').html('We are now past election day.');
         } else if (days == 0)
