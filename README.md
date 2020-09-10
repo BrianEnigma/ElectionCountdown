@@ -1,6 +1,6 @@
 # Overview
 
-This is the code for running https://ElectionCountdown.org.
+This is the code for running [Election Countdown](https://ElectionCountdown.org).
 
 # License
 
@@ -8,7 +8,4 @@ This is the code for running https://ElectionCountdown.org.
 
 # TODO
 
-- Pretty up counters & error message
-- Preview image
-- Finish out resources
-- Contact, "website and API provided by..." in footer?
+- Favico?
