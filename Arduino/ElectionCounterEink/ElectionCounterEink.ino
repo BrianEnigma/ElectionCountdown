@@ -323,18 +323,41 @@ void printNumbers(const String &days, const String &weeks)
   display.print(weeks);
 }
 
+bool hasNonwhitespace(const String &s)
+{
+    for (int i = 0; i < s.length(); i++)
+    {
+        if ((s[i] == ' ') || (s[i] == '\n') || (s[i] == '\r') || (s[i] == '\t'))
+            continue;
+        return true;
+    }
+    return false;
+}
+
 void loop() 
 {
+    bool error = false;
     String counters = fetchData();
     String days = parseNumber(counters, "days");
     String weeks = parseNumber(counters, "weeks");
+    if (!hasNonwhitespace(counters))
+    {
+        error = true;
+        days = "?";
+        weeks = "?";
+    }
     counters = ""; // free up the RAM
     display.clearBuffer();
     printStatic();
     printNumbers(days, weeks);
     display.display();
     display.powerDown();
-    // Delay an hour before next update.
-    for (int minute = 0; minute < 60; minute++)
-        delay(60000); // one minute
+    if (!error)
+    {
+        // Delay an hour before next update.
+        for (int minute = 0; minute < 60; minute++)
+            delay(60000); // one minute
+    } else {
+        delay(30000); // 30 seconds
+    }
 }

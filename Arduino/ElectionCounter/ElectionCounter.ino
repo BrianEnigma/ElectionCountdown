@@ -298,11 +298,29 @@ String parseNumber(const String &s, const char *fieldName)
     return result;
 }
 
+bool hasNonwhitespace(const String &s)
+{
+    for (int i = 0; i < s.length(); i++)
+    {
+        if ((s[i] == ' ') || (s[i] == '\n') || (s[i] == '\r') || (s[i] == '\t'))
+            continue;
+        return true;
+    }
+    return false;
+}
+
 void loop() 
 {
+    bool error = false;
     String counters = fetchData();
     String days = parseNumber(counters, "days");
     String weeks = parseNumber(counters, "weeks");
+    if (!hasNonwhitespace(counters))
+    {
+        error = true;
+        days = "?";
+        weeks = "?";
+    }
     counters = ""; // free up the RAM
     display.clearDisplay();
     display.setCursor(0, 0);
@@ -313,7 +331,12 @@ void loop()
     display.println("");
     display.println("   ...until election.");
     display.display();
-    // Delay an hour before next update.
-    for (int minute = 0; minute < 60; minute++)
-        delay(60000); // one minute
+    if (!error)
+    {
+        // Delay an hour before next update.
+        for (int minute = 0; minute < 60; minute++)
+            delay(60000); // one minute
+    } else {
+        delay(30000); // 30 seconds
+    }
 }
