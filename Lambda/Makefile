@@ -1,7 +1,7 @@
 all: pytz
 	rm -rf package
 	mkdir package
-	cp lambda.py date_countdown.py package/
+	cp lambda.py date_countdown.py settings.py package/
 	cp -R pytz/* package
 	rm -f election_countdown.zip
 	cd package ; zip -r ../election_countdown.zip *

@@ -2,6 +2,7 @@
 
 import date_countdown
 import json
+import settings
 
 
 def get_cors(event):
@@ -25,8 +26,14 @@ def get_cors(event):
 
     # If it exists and has a 'www' then return the 'www' version.
     try:
-        if referer.index('www') >= 0:
+        if referer.index('www.electioncountdown.org') >= 0:
             result = 'https://www.electioncountdown.org'
+        elif referer.index('electioncountdown.org') >= 0:
+            result = 'https://electioncountdown.org'
+        elif referer.index('www.inaugurationcountdown.org') >= 0:
+            result = 'https://www.inaugurationcountdown.org'
+        elif referer.index('inaugurationcountdown.org') >= 0:
+            result = 'https://inaugurationcountdown.org'
     except:
         pass
 

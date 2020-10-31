@@ -3,17 +3,22 @@
 import datetime
 from pprint import pprint
 import pytz
-
-TARGET_YEAR = 2020
-TARGET_MONTH = 11
-TARGET_DAY = 3
+import settings
 
 
 class DateCountdown:
-    def __init__(self, target_year=TARGET_YEAR, target_month=TARGET_MONTH, target_day=TARGET_DAY, debug=False):
+    def __init__(self,
+                 target_year=settings.Settings['target_year'],
+                 target_month=settings.Settings['target_month'],
+                 target_day=settings.Settings['target_day'],
+                 target_label=settings.Settings['target_label'],
+                 target_label_short=settings.Settings['target_label_short'],
+                 debug=False):
         self._debug = debug
         self._my_timezone = pytz.timezone('US/Pacific')
         self._target = datetime.datetime(year=target_year, month=target_month, day=target_day, hour=0, minute=0, second=0, microsecond=0, tzinfo=self._my_timezone)
+        self._label = target_label
+        self._label_short = target_label_short
         if self._debug:
             pprint(self._my_timezone)
             pprint(self._target)
@@ -27,6 +32,9 @@ class DateCountdown:
             result['target'] = self._target.strftime('%Y-%m-%d')
             result['now'] = normalized_local_now.strftime('%Y-%m-%d')
             result['tzinfo'] = str(self._my_timezone)
+            result['label'] = self._label
+        else:
+            result['label'] = self._label_short
         result['days'] = delta.days
         result['weeks'] = int(result['days'] * 10 / 7) / 10 # Weeks, to one decimal place
         if result['days'] < 0:
