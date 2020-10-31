@@ -298,6 +298,32 @@ String parseNumber(const String &s, const char *fieldName)
     return result;
 }
 
+// Simple JSON parser for quoted strings.
+// Note: Doesn't work for things escaped within the string.
+String parseText(const String &s, const char *fieldName)
+{
+    String result = "";
+    int pos = s.indexOf(fieldName);
+    if (pos < 0)
+        return result;
+    pos = s.indexOf(":", pos + 1);
+    if (pos < 0)
+        return result;
+    pos = s.indexOf("\"", pos + 1);
+    if (pos < 0)
+        return result;
+    pos++;
+    char c = s.charAt(pos);
+    while (pos < s.length() && c != '"')
+    {
+        result += c;
+        pos++;
+        if (pos < s.length())
+            c = s.charAt(pos);
+    }
+    return result;
+}
+
 bool hasNonwhitespace(const String &s)
 {
     for (int i = 0; i < s.length(); i++)
@@ -315,6 +341,7 @@ void loop()
     String counters = fetchData();
     String days = parseNumber(counters, "days");
     String weeks = parseNumber(counters, "weeks");
+    String label = parseText(counters, "label");
     if (!hasNonwhitespace(counters))
     {
         error = true;
@@ -329,7 +356,7 @@ void loop()
     display.print("Weeks: ");
     display.println(weeks);
     display.println("");
-    display.println("   ...until election.");
+    display.println("   ...until " + label);
     display.display();
     if (!error)
     {
