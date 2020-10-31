@@ -38,7 +38,7 @@
 </head>
 <body>
     <div id="intro">
-        Countdown to the US Elections: 3 November, 2020.
+        Election Countdown
     </div>
     <div id="counters">
         <div id="counterDays">
@@ -53,6 +53,19 @@
     </div>
     <div id="loadingDiv">
         <img src="img/loading.gif" id="loadingImg" />
+    </div>
+
+    <div id="dates">
+        <h1>Dates</h1>
+        <p>
+            The following dates are relevant to the current election environment and we'll update the countdown to reflect each as it occurs:
+        </p>
+        <ul>
+            <li>3 November, 2020 : Election</li>
+            <li>14 December, 2020 : <a href="https://en.wikipedia.org/wiki/United_States_Electoral_College#Meeting_of_electors">Electoral College Meets</a></li>
+            <li>6 January, 2021 : <a href="https://en.wikipedia.org/wiki/Electoral_Count_Act#Counting_procedures">Electoral Certification by Congress</a></li>
+            <li>20 January, 2021 : <a href="https://en.wikipedia.org/wiki/United_States_presidential_inauguration">Inauguration</a></li>
+        </ul>
     </div>
 
     <div id="resources">
@@ -134,6 +147,7 @@
                 <li><code>tzinfo</code> : The calculation is for the <code>US/Pacific</code> timezone.</li>
                 <li><code>days</code> : Number of days until election, or <code>-1</code> if it was in the past.</li>
                 <li><code>weeks</code> : Number of weeks until election, rounded to one decimal place.</li>
+                <li><code>label</code> : Label for this date..</li>
             </ul>
 
             <h2>API Limits</h2>

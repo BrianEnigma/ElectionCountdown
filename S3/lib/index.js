@@ -85,6 +85,21 @@ api.setLoadingCallback(setLoading);
 
 function displayResult()
 {
+    const month_name = [
+        '',
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+    ]
     $('#counterDays').html('');
     $('#counterWeeks').html('');
     $('#counterMessage').html('');
@@ -92,10 +107,16 @@ function displayResult()
     debug(counter);
     if (counter['days'] !== undefined)
     {
+        let label = counter['label']
         let days = Number(counter['days'])
         let weeks = Number(counter['weeks']).toFixed(1);
+        let target = counter['target'];
+        let target_year = Number(target.substring(0, 4));
+        let target_month = Number(target.substring(5, 7));
+        let target_day = Number(target.substring(8, 10));
+        $('#intro').html('Countdown to the ' + label + ': ' + target_day + ' ' + month_name[target_month] + ', ' + target_year)
         if (days < 0) {
-            $('#counterMessage').html('We are now past election day.');
+            $('#counterMessage').html('We are now past the ' + label + '.');
         } else if (days == 0)
         {
             $('#counterMessage').html('TODAY!');
