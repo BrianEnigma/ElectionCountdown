@@ -24,16 +24,25 @@ def get_cors(event):
     if len(referer) == 0:
         return '*'
 
-    # If it exists and has a 'www' then return the 'www' version.
+    # Try the various domain variants
     try:
         if referer.index('www.electioncountdown.org') >= 0:
-            result = 'https://www.electioncountdown.org'
-        elif referer.index('electioncountdown.org') >= 0:
-            result = 'https://electioncountdown.org'
-        elif referer.index('www.inaugurationcountdown.org') >= 0:
-            result = 'https://www.inaugurationcountdown.org'
-        elif referer.index('inaugurationcountdown.org') >= 0:
-            result = 'https://inaugurationcountdown.org'
+            return 'https://www.electioncountdown.org'
+    except:
+        pass
+    try:
+        if referer.index('electioncountdown.org') >= 0:
+            return 'https://electioncountdown.org'
+    except:
+        pass
+    try:
+        if referer.index('www.inaugurationcountdown.org') >= 0:
+            return 'https://www.inaugurationcountdown.org'
+    except:
+        pass
+    try:
+        if referer.index('inaugurationcountdown.org') >= 0:
+            return 'https://inaugurationcountdown.org'
     except:
         pass
 
