@@ -66,7 +66,7 @@ class ApplicationInterface
             });
         jsonRequest.always(function() {
             //debug(receivedData);
-            if (receivedData['days'])
+            if (receivedData['label'] !== undefined)
                 self.cache = receivedData
             if (self.loadingCallback != undefined)
             {
@@ -105,7 +105,7 @@ function displayResult()
     $('#counterMessage').html('');
     let counter = api.getCounter()
     debug(counter);
-    if (counter['days'] !== undefined)
+    if (counter['label'] !== undefined)
     {
         let label = counter['label']
         let days = Number(counter['days'])
