@@ -100,10 +100,9 @@ li.sticky, li.sticky a {
 #resources {
     background-color:#eeeeee;
     border-radius: 10px;
-    padding: 0.5em 1em;
+    padding: 0 1em;
     margin-left: 1em;
     margin-right: 1em;
-    margin-top: 1em;
 }
 
 #resources li {
