@@ -12,7 +12,7 @@ Settings_Electoral_College = {
     'target_year':          2020,
     'target_month':         12,
     'target_day':           14,
-    'target_label':         'Electoral College Meets',
+    'target_label':         'Electoral College Meeting',
     'target_label_short':   'Electoral College',
 }
 
@@ -32,4 +32,5 @@ Settings_Inauguration = {
     'target_label_short':   'Inauguration',
 }
 
-Settings = Settings_Election
+Settings = Settings_Electoral_College
+
