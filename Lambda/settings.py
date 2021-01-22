@@ -32,5 +32,13 @@ Settings_Inauguration = {
     'target_label_short':   'Inauguration',
 }
 
-Settings = Settings_Electoral_College
+Settings_Election_2021 = {
+    'target_year':          2021,
+    'target_month':         11,
+    'target_day':           2,
+    'target_label':         'US Elections',
+    'target_label_short':   'Elections',
+}
+
+Settings = Settings_Election_2021
 
