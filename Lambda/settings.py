@@ -40,5 +40,13 @@ Settings_Election_2021 = {
     'target_label_short':   'Elections',
 }
 
-Settings = Settings_Election_2021
+Settings_Election_2022 = {
+    'target_year':          2022,
+    'target_month':         11,
+    'target_day':           8,
+    'target_label':         'US Elections',
+    'target_label_short':   'Elections',
+}
+
+Settings = Settings_Election_2022
 
